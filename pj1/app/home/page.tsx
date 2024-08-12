@@ -6,8 +6,9 @@ const page = () => {
     <div className="h-screen flex items-center">
       <div className="w-1/2 flex justify-center items-center ">
         <HomeSelection
-          label="Click Here To see the assignments "
-          to="Assignments"
+          toPage="https://100xdevs.com/"
+          label=" Enroll Now and start your coding DEV Journey! "
+          to="100xDevs"
         />
       </div>
 
@@ -15,6 +16,7 @@ const page = () => {
 
       <div className="w-1/2 flex justify-center items-center ">
         <HomeSelection
+          toPage="/solutions"
           label="Click Here To see the solutions "
           to="Solutions"
         />

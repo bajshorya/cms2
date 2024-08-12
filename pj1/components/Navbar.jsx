@@ -6,9 +6,7 @@ const Navbar = () => {
   return (
     <header className="bg-gray-900 text-white shadow-md rounded-b-lg py-4 px-6 border">
       <div className="max-w-5xl mx-auto flex flex-col items-center">
-        <div className="text-center text-5xl font-bold mb-4">
-          100xDevsWeekly
-        </div>
+        <div className="text-center text-5xl font-bold mb-4">Hikki</div>
 
         <div className="flex justify-between items-center w-full">
           <nav className="space-x-4 flex">
@@ -23,7 +21,10 @@ const Navbar = () => {
               </Link>
             </div>
             <div>
-              <Link href="/home">
+              <Link
+                href="https://github.com/bajshorya/cms2.git"
+                target="_blank"
+              >
                 <Button variant="link">Source</Button>
               </Link>
             </div>
