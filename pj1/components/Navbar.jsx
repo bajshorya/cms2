@@ -1,8 +1,11 @@
+"use client";
 import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
+import { signIn, signOut } from "next-auth/react";
 const Navbar = () => {
+  const router = useRouter();
   return (
     <header className="bg-gray-900 text-white shadow-md rounded-b-lg py-4 px-6 border">
       <div className="max-w-5xl mx-auto flex flex-col items-center">
@@ -19,6 +22,24 @@ const Navbar = () => {
               <Link href="/about">
                 <Button variant="link">About</Button>
               </Link>
+            </div>
+            <div>
+              <Button
+                variant="link"
+                onClick={() => {
+                  signIn();
+                }}
+              >
+                Signin
+              </Button>
+              <Button
+                variant="link"
+                onClick={() => {
+                  signOut();
+                }}
+              >
+                Logout
+              </Button>
             </div>
             <div>
               <Link
