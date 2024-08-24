@@ -1,9 +1,15 @@
-import Image from "next/image";
+"use client";
+
+import Navbar from "@/components/Navbar";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const session = useSession();
+
   return (
     <>
-      <div>hello</div>
+      <Navbar />
+      <div> {JSON.stringify(session.data?.user)}</div>
     </>
   );
 }

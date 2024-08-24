@@ -14,13 +14,18 @@ const Navbar = () => {
         <div className="flex justify-between items-center w-full">
           <nav className="space-x-4 flex">
             <div>
-              <Link href="/home">
+              <Link href="/">
                 <Button variant="link">Home</Button>
               </Link>
             </div>
             <div>
               <Link href="/about">
                 <Button variant="link">About</Button>
+              </Link>
+            </div>
+            <div>
+              <Link href="/signup">
+                <Button variant="link">Signup</Button>
               </Link>
             </div>
             <div>
