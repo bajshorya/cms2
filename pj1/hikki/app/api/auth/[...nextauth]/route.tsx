@@ -9,26 +9,19 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "" },
-        password: { label: "Password", type: "password", placeholder: "" },
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials: any) {
-        // Check if credentials exist
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error("Email and password are required");
-        }
-
-        // Fetch user from database
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
 
-        // Check if user exists and passwords match (plain text comparison)
         if (user && user.password === credentials.password) {
           return { id: user.id, email: user.email, name: user.name };
-        } else {
-          throw new Error("Invalid credentials");
         }
+
+        throw new Error("Invalid credentials");
       },
     }),
   ],
@@ -47,9 +40,6 @@ const handler = NextAuth({
       return session;
     },
   },
-  //   pages: {
-  //     signIn: "/auth/signin", // Optional: specify custom sign-in page
-  //   },
 });
 
 export { handler as GET, handler as POST };

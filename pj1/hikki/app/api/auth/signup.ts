@@ -1,23 +1,19 @@
+import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { NextRequest, NextResponse } from "next/server";
+
 const prisma = new PrismaClient();
 
-interface SignupRequestBody {
-  email: string;
-  password: string;
-  name: string;
-}
-export default async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body: SignupRequestBody = await req.json();
+    const { email, password, name } = await req.json();
 
-    const { email, password, name } = body;
     if (!email || !password || !name) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
       );
     }
+
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
@@ -28,6 +24,7 @@ export default async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
     const newUser = await prisma.user.create({
       data: {
         email,
@@ -35,6 +32,7 @@ export default async function POST(req: NextRequest) {
         name,
       },
     });
+
     return NextResponse.json(newUser, { status: 201 });
   } catch (error) {
     console.error(error);
