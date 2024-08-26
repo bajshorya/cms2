@@ -10,9 +10,14 @@ export default function Home() {
   return (
     <>
       <div>
+        <div className="flex items-center justify-center min-h-screen">
+          {" "}
+          <Button size="lg" onClick={() => router.push("/signup")}>
+            Get Started
+          </Button>
+        </div>
         {/* <Button>hello</Button>
         {JSON.stringify(session.data?.user)} */}
-        <Button onClick={() => router.push("/signup")}>Get Started</Button>
       </div>
     </>
   );

@@ -26,6 +26,9 @@ const handler = NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/signin",
+  },
   callbacks: {
     jwt: async ({ token, user }: any) => {
       if (user) {
@@ -40,11 +43,21 @@ const handler = NextAuth({
       return session;
     },
     redirect: async ({ url, baseUrl }) => {
-      // Redirect to /home after successful sign-in
-      if (url.startsWith(baseUrl)) {
-        return Promise.resolve("/home");
+      if (!url || !baseUrl) {
+        console.error("Invalid URL or Base URL:", { url, baseUrl });
+        return "/home"; // Fallback to home if URL is invalid
       }
-      return Promise.resolve(url);
+
+      try {
+        // Check if the URL is relative and construct a full URL if necessary
+        if (url.startsWith("/")) {
+          url = new URL(url, baseUrl).toString(); // Prepend base URL to relative URL
+        }
+        return url;
+      } catch (e) {
+        console.error("Failed to construct URL:", url);
+        return "/home"; // Fallback to home on URL construction error
+      }
     },
   },
 });

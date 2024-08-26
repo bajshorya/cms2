@@ -32,7 +32,19 @@ export default function SignupPage() {
     <>
       <div className="flex items-center justify-center min-h-screen">
         <div className="flex align-middle gap-28">
-          <div className="text-5xl">Signup</div>
+          <div>
+            <div className="text-5xl">Signup</div>
+            <div className="m-10">
+              {" "}
+              Already have an account ?
+              <div>
+                <Button onClick={() => router.push("/api/auth/signin")}>
+                  Signin
+                </Button>
+              </div>
+            </div>
+          </div>
+
           <form onSubmit={handleSignup}>
             <Input
               type="text"
