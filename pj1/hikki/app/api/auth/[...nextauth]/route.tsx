@@ -39,6 +39,13 @@ const handler = NextAuth({
       }
       return session;
     },
+    redirect: async ({ url, baseUrl }) => {
+      // Redirect to /home after successful sign-in
+      if (url.startsWith(baseUrl)) {
+        return Promise.resolve("/home");
+      }
+      return Promise.resolve(url);
+    },
   },
 });
 

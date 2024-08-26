@@ -2,16 +2,17 @@
 
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
-import Signup from "./signup/page";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const session = useSession();
+  const router = useRouter();
   return (
     <>
       <div>
         {/* <Button>hello</Button>
         {JSON.stringify(session.data?.user)} */}
-        <Signup />
+        <Button onClick={() => router.push("/signup")}>Get Started</Button>
       </div>
     </>
   );
