@@ -12,4 +12,12 @@ model User {
   name     String?
   email    String? @unique
   password String
+  bio       String?
+  posts     Post[]
+}
+model Post {
+  id        String    @id @default(uuid())
+  content   String
+  imageUrl  String?   
+  User User[]
 }
